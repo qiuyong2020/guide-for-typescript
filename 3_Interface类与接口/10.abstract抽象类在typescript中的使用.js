@@ -1,0 +1,57 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+{
+    // 使用抽象类定义一个规范/模板，不给定明确的逻辑实现，玩家和坦克的运动策略不同
+    var Animation_1 = /** @class */ (function () {
+        function Animation() {
+        }
+        // 抽象类可以没有抽象属性/方法，可以有普通属性/方法
+        Animation.prototype.getPos = function () {
+            return { x: 100, y: 300 };
+        };
+        return Animation;
+    }());
+    // 继承抽象类的代码规范
+    var Tank = /** @class */ (function (_super) {
+        __extends(Tank, _super);
+        function Tank() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            // 不遵守抽象规范会报错，不实现抽象属性也会报错
+            _this.name = '敌方坦克';
+            return _this;
+        }
+        Tank.prototype.move = function () {
+            console.log(this.name + "\u79FB\u52A8");
+        };
+        return Tank;
+    }(Animation_1));
+    var Player = /** @class */ (function (_super) {
+        __extends(Player, _super);
+        function Player() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.name = '玩家';
+            return _this;
+        }
+        Player.prototype.move = function () {
+            console.log(this.name + "\u5766\u514B\u79FB\u52A8");
+        };
+        return Player;
+    }(Animation_1));
+    var hd = new Tank();
+    var play = new Player();
+    hd.move();
+    play.move();
+}

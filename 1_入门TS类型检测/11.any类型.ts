@@ -1,0 +1,1 @@
+// 在tsconfig配置文件中找到并开启 "noImplicitAny": true 这一选项，如果不给变量设置类型而被自动推断为any类型时，运行ts文件会报错
